@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         >
         <TextView
             android:id="@+id/titleMain"
@@ -33,6 +33,7 @@
             app:layout_constraintTop_toBottomOf="@+id/titleMain"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/currentContentLayout"
             android:layout_marginTop="20dp"
             >
             <Button
@@ -74,24 +75,26 @@
             app:layout_constraintTop_toBottomOf="@id/prnBtnLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/searchComicLayout"
             android:layout_marginTop="30dp"
             android:id="@+id/currentContentLayout">
 
             <TextView
+                android:id="@+id/comicTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/comicTitle"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:text="Sample Title"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:text="Sample Title"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
                 />
 
             <ImageView
                 android:id="@+id/comicImage"
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_height="450dp"
                 android:scaleType="fitXY"
                 android:layout_below="@id/comicTitle"
                 android:layout_centerHorizontal="true"
@@ -105,28 +108,32 @@
             app:layout_constraintTop_toBottomOf="@id/currentContentLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
             >
+
             <TextView
+                android:id="@+id/searchTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/searchTitle"
-                android:text="Search Comics By ID"
-                android:textColor="@color/white"
-                android:textSize="20dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"
-                />
+                android:text="Search Comics By ID"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
 
             <EditText
+                android:id="@+id/comicSearchBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Enter Comics Number Here!"
-                android:textColorHint="#d0d0d0"
-                android:id="@+id/comicSearchBox"
                 android:layout_below="@id/searchTitle"
-                android:padding="10dp"
+                android:hint="Enter Comics Number Here!"
                 android:inputType="number"
+                android:padding="10dp"
+                android:textColorHint="#d0d0d0"
+                android:textColor="@color/white"
                 />
             <Button
                 android:layout_width="wrap_content"
@@ -140,4 +147,4 @@
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</ScrollView>
