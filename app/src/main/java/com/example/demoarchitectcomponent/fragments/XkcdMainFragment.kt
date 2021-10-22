@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.lifecycle.Observer
-import com.bumptech.glide.Glide
-import com.example.demoarchitectcomponent.R
-import com.example.demoarchitectcomponent.databinding.ActivityMainBinding
 import com.example.demoarchitectcomponent.databinding.XkcdMainFragmentBinding
+import com.example.demoarchitectcomponent.repository.XkcdRepository
+import com.example.demoarchitectcomponent.viewModel.ViewModelFactory
 import com.example.demoarchitectcomponent.viewModel.XkcdMainViewModel
 
 class XkcdMainFragment : Fragment() {
@@ -36,24 +36,27 @@ class XkcdMainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        xkcdfragmentVM = ViewModelProvider(this).get(XkcdMainViewModel::class.java)
+        xkcdfragmentVM = ViewModelProvider(this, ViewModelFactory(XkcdRepository())).get(XkcdMainViewModel::class.java)
 
         xkcdfragmentVM.getInitialComic()
+
         activity?.let {
-            xkcdfragmentVM.myResponse.observe(it, Observer {
-                Log.d("XKCDBody", it.alt)
-                Log.d("XKCDTitle", it.title)
-                Log.d("XKCDImg", it.img)
-                Log.d("XKCDNumber", it.num.toString())
+            with(xkcdfragmentVM.myResponse){
 
-                Glide
-                    .with(this)
-                    .load(it.img)
-                    .placeholder(R.drawable.ic_launcher_foreground)
-                    .into(binding.comicImage)
+               observe(it, Observer {
+                    Log.d("XKCDBody", it.alt)
+                    Log.d("XKCDTitle", it.title)
+                    Log.d("XKCDImg", it.img)
+                    Log.d("XKCDNumber", it.num.toString())
+                   /* binding.comicImage.setImageURI(it.img.toUri())*/
+                   /* Glide.with(this)
+                        .load(it.img)
+                        .placeholder(R.drawable.ic_launcher_foreground)
+                        .into(binding.comicImage)*/
 
-                binding.comicTitle.text = it.title
-            })
+                    binding.comicTitle.text = it.title
+                })
+            }
         }
 
     }
