@@ -14,9 +14,18 @@ class XkcdMainViewModel(private val xkcdRepository: XkcdRepository) : ViewModel(
     private val _myResponse: MutableLiveData<XKCDInitialResponseModel> = MutableLiveData()
     val myResponse:LiveData<XKCDInitialResponseModel> =_myResponse
 
+    private val _allComicsResponse: MutableLiveData<XKCDInitialResponseModel> = MutableLiveData()
+    val allComicsResponse:LiveData<XKCDInitialResponseModel> = _allComicsResponse
+
     fun getInitialComic() {
         viewModelScope.launch {
             _myResponse.value = xkcdRepository.getComics()
+        }
+    }
+
+    fun getAllComics(comics_id: Long) {
+        viewModelScope.launch {
+            _allComicsResponse.value = xkcdRepository.getAllComics(comics_id)
         }
     }
 

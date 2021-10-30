@@ -1,12 +1,10 @@
 package com.example.demoarchitectcomponent
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.demoarchitectcomponent.databinding.ActivityMainBinding
 import com.example.demoarchitectcomponent.fragments.XkcdMainFragment
@@ -19,19 +17,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         val view = binding.root
         setContentView(view)
+        //TODO add toolbar in activity
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
-      /*  binding.btnCounter.text ="Welcome"
-        binding.btnCounter.setOnClickListener {
-            viewModel.getValue()
-        }*/
 
         binding.apply { ->btnCounter
             btnCounter.text = "Welcome"
@@ -41,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.apply { ->btnGoToXKCD
-            btnGoToXKCD.setOnClickListener {
                 if (binding.fragmentContainer.isVisible) {
                     binding.fragmentContainer.visibility = View.GONE
                     binding.btnCounter.visibility = View.VISIBLE
@@ -67,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                     transaction.commit()
                 }
 
-            }
+
         }
 
 
