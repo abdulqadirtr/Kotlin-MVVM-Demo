@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.demoarchitectcomponent.BaseFragment
 import com.example.demoarchitectcomponent.R
+import com.example.demoarchitectcomponent.XkcdModel
 import com.example.demoarchitectcomponent.databinding.XkcdMainFragmentBinding
 import com.example.demoarchitectcomponent.repository.XkcdRepository
 import com.example.demoarchitectcomponent.viewModel.ViewModelFactory
@@ -62,6 +63,14 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
                 Snackbar.make(requireView(), "You Have reached at end", Snackbar.LENGTH_SHORT).show()
             }
         }
+
+       var myCurrencies = listOf(XkcdModel(1, "Dollar", ""),
+            XkcdModel(1, "Euro", ""),
+            XkcdModel(1, "Lira ", ""),
+            XkcdModel(1, "Pound", ""),
+            XkcdModel(1, "Rupees", ""),
+            XkcdModel(1, "Dinar", ""),
+            )
 
 
     }
