@@ -3,6 +3,8 @@ package com.example.demoarchitectcomponent.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demoarchitectcomponent.R
 import com.example.demoarchitectcomponent.XkcdModel
@@ -14,7 +16,7 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
 
     lateinit var binding : XkcdMainFragmentBinding
 
-    private var items : List<XkcdModel> = mutableListOf()
+    private var items : MutableList<XkcdModel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): XkcdViewHolder{
 
@@ -32,10 +34,12 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
        return items.size
     }
 
-    override fun onBindViewHolder(holder: XkcdViewHolder, position: Int) {
-        TODO("Not yet implemented")
+    fun setItems(myItems: List<XkcdModel>) {
+        items.addAll(myItems)
+        notifyDataSetChanged()
     }
 
+    override fun onBindViewHolder(holder: XkcdViewHolder, position: Int)  = holder.bind(items[position])
     //1 # using dataBinding
    /*inner class XkcdViewHolder(binding: XkcdMainFragmentBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -44,8 +48,13 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
     // 2# using layout inflater
    inner class XkcdViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-       fun bind(){
-
+        val xkcdID = itemView.findViewById<TextView>(R.id.xkcd_item_id)
+        val xkcdName = itemView.findViewById<TextView>(R.id.xkcd_item_name)
+        val xkcdImageURL = itemView.findViewById<ImageView>(R.id.xkcd_item_url)
+       fun bind(items : XkcdModel){
+           xkcdID.text = items.xkcdId.toString()
+           xkcdName.text = items.xkcdName
+           //xkcdImageURL.im = items.xkcdUrl
        }
 
    }

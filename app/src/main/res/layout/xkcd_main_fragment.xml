@@ -97,9 +97,9 @@
                 android:id="@+id/comicImage"
                 android:layout_width="350dp"
                 android:layout_height="450dp"
-                android:scaleType="fitXY"
                 android:layout_below="@id/comicTitle"
                 android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
                 android:src="@drawable/ic_launcher_foreground" />
         </RelativeLayout>
 
@@ -145,6 +145,19 @@
                 android:layout_toEndOf="@+id/comicSearchBox"
                 android:layout_below="@+id/searchTitle"
                 />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/xkcd_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_below="@+id/findBtn"
+                tools:listitem="@layout/xkcd_items"
+                tools:itemCount="5"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </RelativeLayout>
 

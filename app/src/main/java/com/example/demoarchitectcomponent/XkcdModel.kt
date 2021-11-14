@@ -1,7 +1,14 @@
 package com.example.demoarchitectcomponent
 
-data class XkcdModel (
-    val xkcdId: Long,
-    val xkcdName: String,
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "xkcd_table")
+ public final class XkcdModel {
+    @PrimaryKey(autoGenerate = true)
+    val xkcdId: Long
+    val xkcdName: String
     val xkcdUrl: String
-    )
+
+
+}

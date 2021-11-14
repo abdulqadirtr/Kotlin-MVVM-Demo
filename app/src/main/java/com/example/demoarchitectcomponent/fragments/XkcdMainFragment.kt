@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.demoarchitectcomponent.BaseFragment
 import com.example.demoarchitectcomponent.R
 import com.example.demoarchitectcomponent.XkcdModel
+import com.example.demoarchitectcomponent.adapter.XkcdAdapter
 import com.example.demoarchitectcomponent.databinding.XkcdMainFragmentBinding
 import com.example.demoarchitectcomponent.repository.XkcdRepository
 import com.example.demoarchitectcomponent.viewModel.ViewModelFactory
@@ -27,6 +28,8 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
     }
 
     private lateinit var xkcdfragmentVM: XkcdMainViewModel
+
+    var xkcdAdapter : XkcdAdapter = XkcdAdapter()
 
 
     override fun getLayoutId(): Int = R.layout.xkcd_main_fragment
@@ -71,6 +74,10 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
             XkcdModel(1, "Rupees", ""),
             XkcdModel(1, "Dinar", ""),
             )
+
+        getDataBinding().xkcdList.adapter = xkcdAdapter
+        xkcdAdapter.setItems(myCurrencies)
+
 
 
     }
