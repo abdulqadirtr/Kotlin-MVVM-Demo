@@ -18,7 +18,7 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
 
     private var items : MutableList<XkcdModel> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): XkcdViewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)=
 
         // 1# using dataBinding
      /*   val inflater = LayoutInflater.from(parent.context)
@@ -26,9 +26,8 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
         return XkcdViewHolder(binding)*/
 
         // 2# using layout inflater
-        return XkcdViewHolder (LayoutInflater.from(parent.context).inflate(R.layout.xkcd_items, parent, false))
+       XkcdViewHolder (LayoutInflater.from(parent.context).inflate(R.layout.xkcd_items, parent, false))
 
-    }
 
     override fun getItemCount(): Int {
        return items.size
