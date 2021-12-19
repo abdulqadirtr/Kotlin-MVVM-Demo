@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AbdulQadirBhai/Kotlin-MVVM-Demo/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/AbdulQadirBhai/Kotlin-MVVM-Demo/app/src/main/res/layout/note_item.xml" value="0.1" />
+        <entry key="..\:/AbdulQadirBhai/Kotlin-MVVM-Demo/app/src/main/res/layout/xkcd_main_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3421875" />
+        <entry key="app/src/main/res/layout/xkcd_items.xml" value="0.24739583333333334" />
+        <entry key="app/src/main/res/layout/xkcd_list_recyclerview.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/xkcd_main_fragment.xml" value="0.35625" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
