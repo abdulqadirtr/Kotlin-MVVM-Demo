@@ -25,15 +25,10 @@ class XKCDRoomRepository(application: Application) {
 
     init {
         xkcdDao = database.xkcdDao()
-        allComics = xkcdDao.getAllComics()
+        allComics = xkcdDao.getAllComic()
     }
 
    suspend fun insert(comic: XKCDInitialDbResponseModel) {
-//        Single.just(noteDao.insert(note))
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe()
-
         withContext(Dispatchers.IO) {              // Dispatchers.IO (main-safety block)
             /* perform network IO here */          // Dispatchers.IO (main-safety block)
             xkcdDao.insert(comic)

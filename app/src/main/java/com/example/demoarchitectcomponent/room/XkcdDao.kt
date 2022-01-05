@@ -25,6 +25,6 @@ interface XkcdDao {
     @Query("delete from xkcd_table")
     fun deleteAllComics(){}
 
-    @Query("select * from xkcd_table order by title desc  LIMIT 1")
-    fun getAllComics(): LiveData<List<XKCDInitialDbResponseModel>>
+  /*  @Query("select * from xkcd_table order by title desc  LIMIT 1")
+    fun getAllComics(): LiveData<List<XKCDInitialDbResponseModel>>*/
 }
