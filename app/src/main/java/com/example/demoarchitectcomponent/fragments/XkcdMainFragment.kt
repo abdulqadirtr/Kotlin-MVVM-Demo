@@ -36,7 +36,6 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
 
         xkcdMainViewModel.getFirstComic()
 
-        initObserve()
 
         //TODO move viewmodel to BASEFRAGMENT
 
@@ -77,7 +76,7 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
         xkcdAdapter.setItems(myCurrencies)
 
 
-
+        initObserve()
     }
 
     private fun initObserve() {
