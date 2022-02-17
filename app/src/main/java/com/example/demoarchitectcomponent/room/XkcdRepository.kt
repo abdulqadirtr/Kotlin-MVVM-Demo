@@ -50,7 +50,7 @@ class XKCDRoomRepository(application: Application) {
     }
 
     fun getAllComics(): LiveData<List<XKCDInitialDbResponseModel>> {
-        return allComics
+        return xkcdDao.getAllComic()
     }
 
 

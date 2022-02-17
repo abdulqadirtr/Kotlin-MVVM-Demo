@@ -50,4 +50,13 @@ class XkcdDatabaseTest : TestCase(){
        }
     }
 
+    @Test
+    fun readTest(){
+        runBlocking {
+            val xkcd = xkcdDao.getAllComic().getOrAwaitValue()
+          //  assertEquals(xkcd.contains(xkcdRespons), true)
+
+        }
+    }
+
 }

@@ -94,8 +94,11 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
                 viewLifecycleOwner.lifecycleScope.launch{
                     xkcdRoomViewModel.insert(XKCDInitialDbResponseModel(it.alt,it.day,it.img,it.link,it.month,it.news,it.num, it.safe_title,it.title,it.transcript,it.year))
                 }
-              /*  xkcdRoomViewModel.getAllNotes().value?.get(2)
-                xkcdRoomViewModel.getAllNotes().value?.get(3)*/
+            })
+
+            xkcdRoomViewModel.getAllNotes().observe(viewLifecycleOwner, Observer {
+               //observe database for store values
+
             })
 
             currentComicsResponse.observe(viewLifecycleOwner, Observer {

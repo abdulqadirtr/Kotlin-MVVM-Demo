@@ -19,7 +19,7 @@ interface XkcdDao {
     @Delete
     fun delete(comic: XKCDInitialDbResponseModel)
 
-    @Query("select * from xkcd_table")
+    @Query("SELECT * FROM xkcd_table")
     fun getAllComic(): LiveData<List<XKCDInitialDbResponseModel>>
 
     @Query("delete from xkcd_table")

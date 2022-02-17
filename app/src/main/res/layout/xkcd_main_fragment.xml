@@ -6,8 +6,7 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.XkcdMainFragment"
-    android:background="@color/black">
+    tools:context=".fragments.XkcdMainFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -90,8 +89,7 @@
                 android:text="Sample Title"
                 android:textColor="@color/white"
                 android:textSize="28sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/comicImage"

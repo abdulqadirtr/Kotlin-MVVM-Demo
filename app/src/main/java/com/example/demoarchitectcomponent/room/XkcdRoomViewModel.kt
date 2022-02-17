@@ -28,6 +28,6 @@ class XKCDRoomViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun getAllNotes(): LiveData<List<XKCDInitialDbResponseModel>> {
-        return allNotes
+      return repository.getAllComics()
     }
 }
