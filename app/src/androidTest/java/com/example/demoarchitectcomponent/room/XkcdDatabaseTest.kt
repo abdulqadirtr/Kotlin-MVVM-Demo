@@ -1,17 +1,15 @@
 package com.example.demoarchitectcomponent.room
 
-import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.internal.runner.junit3.AndroidJUnit3Builder
 import com.example.demoarchitectcomponent.getOrAwaitValue
 import com.example.demoarchitectcomponent.repository.XkcdDao
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -45,16 +43,23 @@ class XkcdDatabaseTest : TestCase(){
         runBlocking {
         val xkcdRespons = XKCDInitialDbResponseModel("Test","Test", "Test","Test","Test","Test", 1,"Test", "Test", "Test","1990")
            xkcdDao.insert(xkcdRespons)
+
            val xkcd = xkcdDao.getAllComic().getOrAwaitValue()
             assertEquals(xkcd.contains(xkcdRespons), true)
        }
     }
 
     @Test
-    fun readTest(){
+    fun deleteXKCDItems(){
         runBlocking {
+            val xkcdRespons = XKCDInitialDbResponseModel("Test","Test", "Test","Test","Test","Test", 1,"Test", "Test", "Test","1990")
+
+            xkcdDao.insert(xkcdRespons)
+
+            xkcdDao.delete(xkcdRespons)
+
             val xkcd = xkcdDao.getAllComic().getOrAwaitValue()
-          //  assertEquals(xkcd.contains(xkcdRespons), true)
+            assertEquals(xkcd.isNullOrEmpty(), true)
 
         }
     }

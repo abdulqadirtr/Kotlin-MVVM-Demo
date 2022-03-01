@@ -10,6 +10,7 @@ import com.example.demoarchitectcomponent.repository.XkcdDao
 
 @Database(entities = [XKCDInitialDbResponseModel::class], version = 1)
 abstract class XkcdDatabase: RoomDatabase() {
+
     abstract fun xkcdDao(): XkcdDao
 
     companion object {
