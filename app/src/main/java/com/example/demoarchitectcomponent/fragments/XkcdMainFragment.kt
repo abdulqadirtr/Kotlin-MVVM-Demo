@@ -2,6 +2,7 @@ package com.example.demoarchitectcomponent.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -30,8 +31,9 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
 
     override fun getLayoutId(): Int = R.layout.xkcd_main_fragment
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         xkcdMainViewModel = ViewModelProvider(this, ViewModelFactory(XkcdRepository())).get(XkcdMainViewModel::class.java)
 
         xkcdMainViewModel.getFirstComic()
@@ -39,26 +41,28 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
 
         //TODO move viewmodel to BASEFRAGMENT
 
-        getDataBinding().randomBtn.setOnClickListener {
-            comic_num = (first_comic_num until last_comic_num).random()
-            xkcdMainViewModel.getAllComics(comic_num)
-        }
-
-        getDataBinding().prevBtn.setOnClickListener {
-            if(comic_num > first_comic_num) {
-                comic_num -= 1
+        with(getDataBinding()) {
+          randomBtn.setOnClickListener {
+                comic_num = (first_comic_num until last_comic_num).random()
                 xkcdMainViewModel.getAllComics(comic_num)
-            } else {
-                Snackbar.make(requireView(), "You Have reached at start", Snackbar.LENGTH_SHORT).show()
             }
-        }
-
-        getDataBinding().nextBtn.setOnClickListener {
-            if(comic_num < last_comic_num) {
-                comic_num += 1
-                xkcdMainViewModel.getAllComics(comic_num)
-            } else {
-                Snackbar.make(requireView(), "You Have reached at end", Snackbar.LENGTH_SHORT).show()
+            prevBtn.setOnClickListener {
+                if (comic_num > first_comic_num) {
+                    comic_num -= 1
+                    xkcdMainViewModel.getAllComics(comic_num)
+                } else {
+                    Snackbar.make(requireView(), "You Have reached at start", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
+            }
+            nextBtn.setOnClickListener {
+                if (comic_num < last_comic_num) {
+                    comic_num += 1
+                    xkcdMainViewModel.getAllComics(comic_num)
+                } else {
+                    Snackbar.make(requireView(), "You Have reached at end", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
 
