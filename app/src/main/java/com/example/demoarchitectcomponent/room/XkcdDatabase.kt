@@ -14,7 +14,10 @@ abstract class XkcdDatabase: RoomDatabase() {
     abstract fun xkcdDao(): XkcdDao
 
     companion object {
+
+        @Volatile
         private var instance: XkcdDatabase? = null
+
 
         @Synchronized
         fun getInstance(ctx: Context): XkcdDatabase {

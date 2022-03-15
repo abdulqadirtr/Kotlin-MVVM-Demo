@@ -1,32 +1,29 @@
 package com.example.demoarchitectcomponent.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.demoarchitectcomponent.R
 import com.example.demoarchitectcomponent.XkcdModel
-import com.example.demoarchitectcomponent.databinding.XkcdMainFragmentBinding
+import com.example.demoarchitectcomponent.databinding.XkcdItemsBinding
 
 class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
 
     var xkcdData: ArrayList<XkcdModel> = arrayListOf()
 
-    lateinit var binding : XkcdMainFragmentBinding
+    lateinit var binding : XkcdItemsBinding
 
     private var items : MutableList<XkcdModel> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)=
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : XkcdViewHolder {
 
         // 1# using dataBinding
-     /*   val inflater = LayoutInflater.from(parent.context)
-        binding = XkcdMainFragmentBinding.inflate(inflater,parent,false)
-        return XkcdViewHolder(binding)*/
+        val inflater = LayoutInflater.from(parent.context)
+        binding = XkcdItemsBinding.inflate(inflater, parent, false)
+        return XkcdViewHolder(binding)
+    }
 
         // 2# using layout inflater
-       XkcdViewHolder (LayoutInflater.from(parent.context).inflate(R.layout.xkcd_items, parent, false))
+      // XkcdViewHolder (LayoutInflater.from(parent.context).inflate(R.layout.xkcd_items, parent, false))
 
 
     override fun getItemCount(): Int {
@@ -45,14 +42,12 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
     }*/
 
     // 2# using layout inflater
-   inner class XkcdViewHolder(view: View): RecyclerView.ViewHolder(view) {
+   inner class XkcdViewHolder(binding: XkcdItemsBinding): RecyclerView.ViewHolder(binding.root) {
 
-        val xkcdID = itemView.findViewById<TextView>(R.id.xkcd_item_id)
-        val xkcdName = itemView.findViewById<TextView>(R.id.xkcd_item_name)
-        val xkcdImageURL = itemView.findViewById<ImageView>(R.id.xkcd_item_url)
        fun bind(items : XkcdModel){
-           xkcdID.text = items.xkcdId.toString()
-           xkcdName.text = items.xkcdName
+           binding.xkcdItemId.text = items.xkcdId.toString()
+           binding.xkcdItemName.text = items.xkcdName
+          // binding.xkcdItemUrl.setImageDrawable(items.xkcdUrl)
            //xkcdImageURL.im = items.xkcdUrl
        }
 
