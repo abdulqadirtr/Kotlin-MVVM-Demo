@@ -2,6 +2,7 @@ package com.example.demoarchitectcomponent.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demoarchitectcomponent.XkcdModel
 import com.example.demoarchitectcomponent.databinding.XkcdItemsBinding
@@ -14,6 +15,7 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
 
     private var items : MutableList<XkcdModel> = mutableListOf()
 
+     var itemClickListener: (XkcdModel) -> Unit = {}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : XkcdViewHolder {
 
         // 1# using dataBinding
@@ -42,11 +44,18 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
     }*/
 
     // 2# using layout inflater
-   inner class XkcdViewHolder(binding: XkcdItemsBinding): RecyclerView.ViewHolder(binding.root) {
+   inner class XkcdViewHolder(private val binding: XkcdItemsBinding): RecyclerView.ViewHolder(binding.root) {
+        init {
+            itemView.setOnClickListener {
+                itemClickListener(items[layoutPosition])
+            }
 
+
+        }
        fun bind(items : XkcdModel){
            binding.xkcdItemId.text = items.xkcdId.toString()
            binding.xkcdItemName.text = items.xkcdName
+
           // binding.xkcdItemUrl.setImageDrawable(items.xkcdUrl)
            //xkcdImageURL.im = items.xkcdUrl
        }

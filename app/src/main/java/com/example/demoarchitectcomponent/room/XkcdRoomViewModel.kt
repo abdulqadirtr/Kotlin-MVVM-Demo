@@ -3,6 +3,9 @@ package com.example.demoarchitectcomponent.room
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
+import com.example.demoarchitectcomponent.XkcdModel
 
 
 class XKCDRoomViewModel(app: Application) : AndroidViewModel(app) {

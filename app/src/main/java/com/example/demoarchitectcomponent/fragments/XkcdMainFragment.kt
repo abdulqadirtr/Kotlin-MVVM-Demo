@@ -3,6 +3,7 @@ package com.example.demoarchitectcomponent.fragments
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast.LENGTH_LONG
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -11,12 +12,15 @@ import com.example.demoarchitectcomponent.R
 import com.example.demoarchitectcomponent.XkcdModel
 import com.example.demoarchitectcomponent.adapter.XkcdAdapter
 import com.example.demoarchitectcomponent.databinding.XkcdMainFragmentBinding
+import com.example.demoarchitectcomponent.di.XkcdApplication
 import com.example.demoarchitectcomponent.repository.XkcdRepository
 import com.example.demoarchitectcomponent.room.XKCDInitialDbResponseModel
 import com.example.demoarchitectcomponent.room.XKCDRoomViewModel
 import com.example.demoarchitectcomponent.viewModel.ViewModelFactory
 import com.example.demoarchitectcomponent.viewModel.XkcdMainViewModel import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import javax.inject.Inject
 
 class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
 
@@ -29,10 +33,16 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
     private lateinit var xkcdMainViewModel: XkcdMainViewModel
     private var xkcdAdapter : XkcdAdapter = XkcdAdapter()
 
+   /* @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory*/
+
+
     override fun getLayoutId(): Int = R.layout.xkcd_main_fragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity?.application as XkcdApplication).applicationComponent.inject(this)
 
         xkcdMainViewModel = ViewModelProvider(this, ViewModelFactory(XkcdRepository())).get(XkcdMainViewModel::class.java)
 
@@ -68,17 +78,20 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
 
         //TODO Dummy data for Recyclerview
 
-       var myCurrencies = listOf(XkcdModel(1, "Dollar", ""),
-            XkcdModel(1, "Euro", ""),
-            XkcdModel(1, "Lira ", ""),
-            XkcdModel(1, "Pound", ""),
-            XkcdModel(1, "Rupees", ""),
-            XkcdModel(1, "Dinar", ""),
-            )
+       var myCurrencies = listOf(
+           XkcdModel(1, "Dollar", ""),
+           XkcdModel(1, "Euro", ""),
+           XkcdModel(1, "Lira ", ""),
+           XkcdModel(1, "Pound", ""),
+           XkcdModel(1, "Rupees", ""),
+           XkcdModel(1, "Dinar", ""),
+       )
 
         getDataBinding().xkcdList.adapter = xkcdAdapter
         xkcdAdapter.setItems(myCurrencies)
-
+        xkcdAdapter.itemClickListener = {
+            Snackbar.make( view , it.xkcdName, Snackbar.LENGTH_LONG).show()
+        }
 
         initObserve()
     }
@@ -104,6 +117,7 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
                //observe database for store values
 
             })
+
 
             currentComicsResponse.observe(viewLifecycleOwner, Observer {
                 getDataBinding().comicTitle.text = it.title
