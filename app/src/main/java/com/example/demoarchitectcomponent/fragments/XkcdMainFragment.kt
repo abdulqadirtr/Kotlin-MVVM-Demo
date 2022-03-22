@@ -79,12 +79,12 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
         //TODO Dummy data for Recyclerview
 
        var myCurrencies = listOf(
-           XkcdModel(1, "Dollar", ""),
-           XkcdModel(1, "Euro", ""),
-           XkcdModel(1, "Lira ", ""),
-           XkcdModel(1, "Pound", ""),
-           XkcdModel(1, "Rupees", ""),
-           XkcdModel(1, "Dinar", ""),
+           XkcdModel(1, "Dollar", "www.google.com"),
+           XkcdModel(1, "Euro", "www.google.com"),
+           XkcdModel(1, "Lira ", "www.google.com"),
+           XkcdModel(1, "Pound", "www.google.com"),
+           XkcdModel(1, "Rupees", "www.google.com"),
+           XkcdModel(1, "Dinar", "www.google.com"),
        )
 
         getDataBinding().xkcdList.adapter = xkcdAdapter

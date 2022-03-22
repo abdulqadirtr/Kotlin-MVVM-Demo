@@ -53,8 +53,11 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
 
         }
        fun bind(items : XkcdModel){
-           binding.xkcdItemId.text = items.xkcdId.toString()
-           binding.xkcdItemName.text = items.xkcdName
+           binding.xkcdModelName = items
+           binding.executePendingBindings()
+
+          /* binding.xkcdItemId.text = items.xkcdId.toString()
+           binding.xkcdItemName.text = items.xkcdName*/
 
           // binding.xkcdItemUrl.setImageDrawable(items.xkcdUrl)
            //xkcdImageURL.im = items.xkcdUrl
