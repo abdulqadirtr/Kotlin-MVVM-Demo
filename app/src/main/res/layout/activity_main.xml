@@ -28,4 +28,27 @@
         android:backgroundTint="@color/design_default_color_secondary"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_container"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnGoToXKCD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Go To XKCD"
+        android:id="@+id/btnGoToXKCD"
+        android:backgroundTint="@color/design_default_color_primary_dark"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
