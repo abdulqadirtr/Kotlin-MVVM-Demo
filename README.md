@@ -18,4 +18,5 @@ Dagger2
 ** Screenshot
 
 ![Main Screen]
+
 (https://github.com/abdulqadirtr/Kotlin-MVVM-Demo/blob/fix/binding-adapter/app/src/main/res/drawable/screen_one.png)
