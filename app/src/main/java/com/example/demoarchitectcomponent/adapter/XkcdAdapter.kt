@@ -2,10 +2,10 @@ package com.example.demoarchitectcomponent.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demoarchitectcomponent.XkcdModel
 import com.example.demoarchitectcomponent.databinding.XkcdItemsBinding
+import com.example.demoarchitectcomponent.room.XKCDInitialDbResponseModel
 
 class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
 
@@ -13,9 +13,9 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
 
     lateinit var binding : XkcdItemsBinding
 
-    private var items : MutableList<XkcdModel> = mutableListOf()
+    private var items : MutableList<XKCDInitialDbResponseModel> = mutableListOf()
 
-     var itemClickListener: (XkcdModel) -> Unit = {}
+     var itemClickListener: (XKCDInitialDbResponseModel) -> Unit = {}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : XkcdViewHolder {
 
         // 1# using dataBinding
@@ -32,7 +32,8 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
        return items.size
     }
 
-    fun setItems(myItems: List<XkcdModel>) {
+    fun setItems(myItems: List<XKCDInitialDbResponseModel>) {
+        items.clear()
         items.addAll(myItems)
         notifyDataSetChanged()
     }
@@ -52,7 +53,7 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
 
 
         }
-       fun bind(items : XkcdModel){
+       fun bind(items : XKCDInitialDbResponseModel){
            binding.xkcdModelName = items
            binding.executePendingBindings()
 

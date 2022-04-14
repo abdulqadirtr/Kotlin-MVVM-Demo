@@ -33,9 +33,6 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
     private lateinit var xkcdMainViewModel: XkcdMainViewModel
     private var xkcdAdapter : XkcdAdapter = XkcdAdapter()
 
-   /* @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory*/
-
 
     override fun getLayoutId(): Int = R.layout.xkcd_main_fragment
 
@@ -75,22 +72,8 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
                 }
             }
         }
-
-        //TODO Dummy data for Recyclerview
-
-       var myCurrencies = listOf(
-           XkcdModel(1, "Dollar", "www.google.com"),
-           XkcdModel(1, "Euro", "www.google.com"),
-           XkcdModel(1, "Lira ", "www.google.com"),
-           XkcdModel(1, "Pound", "www.google.com"),
-           XkcdModel(1, "Rupees", "www.google.com"),
-           XkcdModel(1, "Dinar", "www.google.com"),
-       )
-
-        getDataBinding().xkcdList.adapter = xkcdAdapter
-        xkcdAdapter.setItems(myCurrencies)
         xkcdAdapter.itemClickListener = {
-            Snackbar.make( view , it.xkcdName, Snackbar.LENGTH_LONG).show()
+            Snackbar.make( view , it.title, Snackbar.LENGTH_LONG).show()
         }
 
         initObserve()
@@ -115,6 +98,9 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
 
             xkcdRoomViewModel.getAllNotes().observe(viewLifecycleOwner, Observer {
                //observe database for store values
+                getDataBinding().xkcdList.adapter = xkcdAdapter
+                xkcdAdapter.setItems(it)
+
 
             })
 
