@@ -99,7 +99,8 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
             xkcdRoomViewModel.getAllNotes().observe(viewLifecycleOwner, Observer {
                //observe database for store values
                 getDataBinding().xkcdList.adapter = xkcdAdapter
-                xkcdAdapter.setItems(it)
+                //xkcdAdapter.setItems(it)
+                xkcdAdapter.submitList(it)
 
 
             })

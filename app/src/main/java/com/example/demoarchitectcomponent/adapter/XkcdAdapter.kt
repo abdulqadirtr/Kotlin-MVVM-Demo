@@ -2,14 +2,13 @@ package com.example.demoarchitectcomponent.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.demoarchitectcomponent.XkcdModel
 import com.example.demoarchitectcomponent.databinding.XkcdItemsBinding
 import com.example.demoarchitectcomponent.room.XKCDInitialDbResponseModel
 
-class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
-
-    var xkcdData: ArrayList<XkcdModel> = arrayListOf()
+class XkcdAdapter: ListAdapter<XKCDInitialDbResponseModel, XkcdAdapter.XkcdViewHolder>(XkcdDiffUtil()){
 
     lateinit var binding : XkcdItemsBinding
 
@@ -20,6 +19,8 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
 
         // 1# using dataBinding
         val inflater = LayoutInflater.from(parent.context)
+        
+
         binding = XkcdItemsBinding.inflate(inflater, parent, false)
         return XkcdViewHolder(binding)
     }
@@ -28,17 +29,13 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
       // XkcdViewHolder (LayoutInflater.from(parent.context).inflate(R.layout.xkcd_items, parent, false))
 
 
-    override fun getItemCount(): Int {
-       return items.size
-    }
-
-    fun setItems(myItems: List<XKCDInitialDbResponseModel>) {
+   /* fun setItems(myItems: List<XKCDInitialDbResponseModel>) {
         items.clear()
         items.addAll(myItems)
         notifyDataSetChanged()
-    }
+    }*/
 
-    override fun onBindViewHolder(holder: XkcdViewHolder, position: Int)  = holder.bind(items[position])
+    override fun onBindViewHolder(holder: XkcdViewHolder, position: Int)  = holder.bind(getItem(position))
     //1 # using dataBinding
    /*inner class XkcdViewHolder(binding: XkcdMainFragmentBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -48,7 +45,7 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
    inner class XkcdViewHolder(private val binding: XkcdItemsBinding): RecyclerView.ViewHolder(binding.root) {
         init {
             itemView.setOnClickListener {
-                itemClickListener(items[layoutPosition])
+                itemClickListener(getItem(layoutPosition))
             }
 
 
@@ -65,6 +62,24 @@ class XkcdAdapter: RecyclerView.Adapter<XkcdAdapter.XkcdViewHolder>(){
        }
 
    }
+
+//TODO ListAdapter Implemented
+    class XkcdDiffUtil : DiffUtil.ItemCallback<XKCDInitialDbResponseModel>(){
+        override fun areItemsTheSame(
+            oldItem: XKCDInitialDbResponseModel,
+            newItem: XKCDInitialDbResponseModel
+        ): Boolean {
+           return (oldItem.num == newItem.num)
+        }
+
+        override fun areContentsTheSame(
+            oldItem: XKCDInitialDbResponseModel,
+            newItem: XKCDInitialDbResponseModel
+        ): Boolean {
+           return oldItem == newItem
+        }
+
+    }
 
 }
 
