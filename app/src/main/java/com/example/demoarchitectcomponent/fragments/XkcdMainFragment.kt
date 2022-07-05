@@ -19,9 +19,6 @@ import com.example.demoarchitectcomponent.room.XKCDRoomViewModel
 import com.example.demoarchitectcomponent.viewModel.ViewModelFactory
 import com.example.demoarchitectcomponent.viewModel.XkcdMainViewModel import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import javax.inject.Inject
-
 class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
 
     companion object {
@@ -71,10 +68,13 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
                         .show()
                 }
             }
+       /*     val manager = GridLayoutManager(requireActivity(), 3)
+            xkcdList.layoutManager = manager*/
         }
         xkcdAdapter.itemClickListener = {
             Snackbar.make( view , it.title, Snackbar.LENGTH_LONG).show()
         }
+
 
         initObserve()
     }
@@ -100,7 +100,8 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
                //observe database for store values
                 getDataBinding().xkcdList.adapter = xkcdAdapter
                 //xkcdAdapter.setItems(it)
-                xkcdAdapter.submitList(it)
+               // xkcdAdapter.submitList(it)
+                xkcdAdapter.addHeader(it)
 
 
             })
