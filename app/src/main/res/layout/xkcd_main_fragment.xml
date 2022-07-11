@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="vm"
+            type="com.example.demoarchitectcomponent.viewModel.XkcdMainViewModel" />
+    </data>
+
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -121,6 +127,15 @@
             app:layout_constraintTop_toBottomOf="@+id/searchTitle"
             tools:itemCount="5"
             tools:listitem="@layout/xkcd_items" />
+
+        <ImageView
+            xkcdStatus="@{vm.status}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/searchTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/titleMain" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

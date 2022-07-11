@@ -6,6 +6,8 @@ import com.example.demoarchitectcomponent.xkcdapi.XKCDInitialResponseModel
 import kotlinx.coroutines.*
 import java.lang.Exception
 
+enum class XkcdStatus{LOADING, DONE, ERRO}
+
 class XkcdMainViewModel(private val xkcdRepository: XkcdRepository) : ViewModel() {
 
     private val _allComicsResponse: MutableLiveData<XKCDInitialResponseModel> = MutableLiveData()
@@ -13,6 +15,10 @@ class XkcdMainViewModel(private val xkcdRepository: XkcdRepository) : ViewModel(
 
     private val _currentComicsResponse: MutableLiveData<XKCDInitialResponseModel> = MutableLiveData()
     val currentComicsResponse: LiveData<XKCDInitialResponseModel> = _currentComicsResponse
+
+    private val _status = MutableLiveData<XkcdStatus>()
+    val status: LiveData<XkcdStatus>
+        get() = _status
 
     fun getAllComics(comics_id: Long) {
         viewModelScope.launch {
@@ -27,15 +33,17 @@ class XkcdMainViewModel(private val xkcdRepository: XkcdRepository) : ViewModel(
     fun getFirstComic() {
         viewModelScope.launch {
             try {
+                _status.value = XkcdStatus.LOADING
                 val response = xkcdRepository.getComics()
                 response.isSuccessful.let { isSuccess ->
                     if(isSuccess){
                         _currentComicsResponse.value = response.body()
+                        _status.value = XkcdStatus.DONE
                     }
 
                 }
             } catch (e: Exception) {
-
+                _status.value = XkcdStatus.ERRO
             }
         }
 

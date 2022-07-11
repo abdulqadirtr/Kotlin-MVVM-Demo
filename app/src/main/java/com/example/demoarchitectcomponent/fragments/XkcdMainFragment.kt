@@ -42,6 +42,12 @@ class XkcdMainFragment : BaseFragment<XkcdMainFragmentBinding>() {
 
         xkcdMainViewModel.getFirstComic()
 
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        getDataBinding().lifecycleOwner = this
+
+        // Giving the binding access to the OverviewViewModel
+        getDataBinding().vm = xkcdMainViewModel
+
 
         //TODO move viewmodel to BASEFRAGMENT
 
